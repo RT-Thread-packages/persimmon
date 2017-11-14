@@ -1,8 +1,12 @@
 /*
-* File      : pm_numerical.h
-* This file is part of RT-Thread RTOS
-* COPYRIGHT (C) 2009-2017 RT-Thread Develop Team
-*/
+ * File      : pm_numerical.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
 #pragma once
 
 #include <vector>
@@ -16,55 +20,55 @@ namespace Persimmon
 class Numerical : public Widget
 {
 public:
-	enum NUM_ALIGN		//¶ÔÆë·½Ê½£¬Ä¬ÈÏ×İÏò¾ÓÖĞ£¬ºáÏòÓĞ¿¿×ó£¬¿¿ÓÒ£¬¾ÓÖĞ
-	{
-		ALIGN_LEFT = 0x00,
-		ALIGN_RIGHT = 0x01,
-		ALIGN_CENTER = 0x02,
-	};
+    enum NUM_ALIGN    //å¯¹é½æ–¹å¼ï¼Œé»˜è®¤çºµå‘å±…ä¸­ï¼Œæ¨ªå‘æœ‰é å·¦ï¼Œé å³ï¼Œå±…ä¸­
+    {
+        ALIGN_LEFT = 0x00,
+        ALIGN_RIGHT = 0x01,
+        ALIGN_CENTER = 0x02,
+    };
 
-	Numerical(const Rect& rect);
+    Numerical(const Rect& rect);
     virtual ~Numerical();
 
-	void addImgPath(const char *img)	//Ìí¼ÓÊı×ÖÍ¼Æ¬¶ÔÓ¦Â·¾¶£¬´Ó0 - 9 °´Ë³ĞòÌí¼Ó
-	{
-		imgPath.push_back(rt_strdup(img));
-	}
-	
-	void setNumWidth(int width)		//ÉèÖÃÊı×ÖÍ¼Æ¬£¬ËùÕ¼¿í¶È
-	{
-		numWidth = width;
-	}
-
-	void setDigit(int digit)	//ÉèÖÃÊıÖµÎ»ÊıÏÔÊ¾£¬¸ßÎ»Ìî0
-	{
-		this->digit = digit;
-	}
-
-	void setNumericalUnit(Image *image)		//ÉèÖÃµ¥Î»ÏÔÊ¾
-	{
-		if (unit)
-			delete unit;
-
-		unit = image;
-	}
-
-	void setNumericalMinus(Image *image)	//ÉèÖÃÖ§³ÖÏÔÊ¾¸ººÅ
-	{
-		if (minus)
-			delete minus;
-
-		minus = image;
-	}
-
-	void setNumAlign(enum NUM_ALIGN algn = ALIGN_CENTER)	//ÉèÖÃ¶ÔÆë·½Ê½
-	{
-		numAlgn = algn;
-	}
-	
-    void setNumerical(int value)	//ÉèÖÃÏÔÊ¾ÊıÖµ
+    void addImgPath(const char *img)    //æ·»åŠ æ•°å­—å›¾ç‰‡å¯¹åº”è·¯å¾„ï¼Œä»0 - 9 æŒ‰é¡ºåºæ·»åŠ 
     {
-		numerical = value;
+        imgPath.push_back(rt_strdup(img));
+    }
+    
+    void setNumWidth(int width)         //è®¾ç½®æ•°å­—å›¾ç‰‡ï¼Œæ‰€å å®½åº¦
+    {
+        numWidth = width;
+    }
+
+    void setDigit(int digit)           //è®¾ç½®æ•°å€¼ä½æ•°æ˜¾ç¤ºï¼Œé«˜ä½å¡«0
+    {
+        this->digit = digit;
+    }
+
+    void setNumericalUnit(Image *image)  //è®¾ç½®å•ä½æ˜¾ç¤º
+    {
+        if (unit)
+            delete unit;
+
+        unit = image;
+    }
+
+    void setNumericalMinus(Image *image) //è®¾ç½®æ”¯æŒæ˜¾ç¤ºè´Ÿå·
+    {
+        if (minus)
+            delete minus;
+
+        minus = image;
+    }
+
+    void setNumAlign(enum NUM_ALIGN algn = ALIGN_CENTER)   //è®¾ç½®å¯¹é½æ–¹å¼
+    {
+        numAlgn = algn;
+    }
+    
+    void setNumerical(int value)   //è®¾ç½®æ˜¾ç¤ºæ•°å€¼
+    {
+        numerical = value;
     }
 
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
@@ -72,8 +76,8 @@ public:
                         RenderFlag flags = DrawNormal);
 
 private:
-	enum NUM_ALIGN numAlgn;
-	std::vector<char *> imgPath;
+    enum NUM_ALIGN numAlgn;
+    std::vector<char *> imgPath;
     Image *unit, *minus;
     int numerical, numWidth, digit;
 };

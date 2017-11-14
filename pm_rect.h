@@ -1,5 +1,13 @@
-#ifndef PM_RECT_H__
-#define PM_RECT_H__
+/*
+ * File      : pm_rect.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #include <rtgui/rtgui.h>
 #include <rtgui/region.h>
@@ -220,6 +228,4 @@ inline int Rect::bottom() const
 }
 
 }
-
-#endif
 

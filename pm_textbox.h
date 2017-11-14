@@ -1,5 +1,13 @@
-#ifndef PM_TEXTBOX_H__
-#define PM_TEXTBOX_H__
+/*
+ * File      : pm_textbox.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #include <pm_widget.h>
 
@@ -24,13 +32,13 @@ public:
         if (text != RT_NULL) rt_free(text);
 
         text = RT_NULL;
-		textLen = 0;
+        textLen = 0;
     }
 
-	void setTextMaxLen(int len)
-	{
-		textMaxLen = len;
-	}
+    void setTextMaxLen(int len)
+    {
+        textMaxLen = len;
+    }
 
     void enableMask(bool mas = true)
     {
@@ -45,11 +53,10 @@ private:
     void updateText(const char* fmt, ...);
 
     char *text;
-	int textMaxLen, textLen;
+    int textMaxLen, textLen;
     bool mask;
 };
 
 }
 
-#endif
 

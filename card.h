@@ -1,5 +1,13 @@
-#ifndef PM_CARD_H__
-#define PM_CARD_H__
+/*
+ * File      : card.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #include <vector>
 #include <pm_widget.h>
@@ -30,17 +38,17 @@ public:
     virtual void addChild(Widget* widget);
     virtual void removeChild(Widget* widget);
 
-	void setDotIndicator(Image *dot_nor, Image *dot_sel)
-	{
-		if (this->dot_nor)
-			delete this->dot_nor;
+    void setDotIndicator(Image *dot_nor, Image *dot_sel)
+    {
+        if (this->dot_nor)
+            delete this->dot_nor;
 
-		if (this->dot_sel)
-			delete this->dot_sel;
+        if (this->dot_sel)
+            delete this->dot_sel;
 
-		this->dot_nor = dot_nor;
-		this->dot_sel = dot_sel;
-	}
+        this->dot_nor = dot_nor;
+        this->dot_sel = dot_sel;
+    }
 
     void selectCardPage(int index);
 
@@ -91,4 +99,4 @@ private:
 };
 
 }
-#endif
+
