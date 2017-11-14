@@ -1,5 +1,13 @@
-#ifndef GESTURE_H_EZCEQPX0
-#define GESTURE_H_EZCEQPX0
+/*
+ * File      : gesture.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,4 +68,3 @@ rt_bool_t rtgui_gesture_recognize(struct rtgui_gesture *gest,
 }
 #endif
 
-#endif /* end of include guard: GESTURE_H_EZCEQPX0 */

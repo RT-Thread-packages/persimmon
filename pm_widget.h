@@ -1,5 +1,13 @@
-#ifndef PM_WIDIGET_H__
-#define PM_WIDIGET_H__
+/*
+ * File      : pm_widget.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #include <rtgui/rtgui.h>
 #include <rtgui/widgets/widget.h>
@@ -261,4 +269,3 @@ private:
 
 DEFINE_CLASS_ENUM_FLAG_OPERATORS2(rtgui_gesture_type);
 
-#endif

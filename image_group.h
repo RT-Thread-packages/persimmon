@@ -1,5 +1,13 @@
-#ifndef IMAGE_GROUP_H__
-#define IMAGE_GROUP_H__
+/*
+ * File      : image_group.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
+#pragma once
 
 #include <pm_container.h>
 #include <sigslot.h>
@@ -40,5 +48,3 @@ private:
 };
 
 }
-
-#endif

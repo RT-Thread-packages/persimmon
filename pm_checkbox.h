@@ -1,8 +1,12 @@
 /*
-* File      : pm_checkbox.h
-* This file is part of RT-Thread RTOS
-* COPYRIGHT (C) 2009-2017 RT-Thread Develop Team
-*/
+ * File      : pm_checkbox.h
+ * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2017-11-05     realthread   the first version
+ */
+
 #pragma once
 
 #include <vector>
@@ -19,12 +23,12 @@ public:
     Checkbox(const Rect& rect);
     virtual ~Checkbox();
 
-    bool isSelected(void)		//是否选中
+    bool isSelected(void)        //whether or not selected
     {
         return selected;
     }
 
-    void enableSelected(bool sel = true)	//选中
+    void enableSelected(bool sel = true)    //is selected
     {
         selected = sel;
     }
@@ -61,19 +65,19 @@ public:
         return normalImg;
     }
 
-    void setCheckboxNum(int num)	//设置 控件 编号
+    void setCheckboxNum(int num)         //Set checkbox number
     {
         checkboxNum = num;
     }
 
-    int getCheckboxNum(void)	//获取 控件 编号
+    int getCheckboxNum(void)             //Get checkbox number
     {
         return checkboxNum;
     }
 
-    Signal<int, bool> clicked;	//控件事件传递
+    Signal<int, bool> clicked;           //Event transfer
 
-    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);	//触摸手势事件处理函数
+    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);    //Touch gesture event
 
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
                         const Rect &srcRect = Rect(),
@@ -81,8 +85,8 @@ public:
 
 private:
     Image *selectedImg, *normalImg;
-    bool selected;		//状态
-    int checkboxNum;	//编号
+    bool selected;        //State
+    int checkboxNum;      //Number
 };
 
 class GroupBox : public Container
@@ -100,7 +104,7 @@ public:
                 this->checkbox[selCheckboxNum]->enableSelected(false);
                 this->checkbox[selCheckboxNum]->refresh();
                 selCheckboxNum = num;
-				clicked(selCheckboxNum);
+                clicked(selCheckboxNum);
             }
         }
         else
@@ -136,7 +140,7 @@ public:
         return selCheckboxNum;
     }
 
-	Signal<int> clicked;
+    Signal<int> clicked;
 
 private:
     std::vector<Checkbox*> checkbox;
