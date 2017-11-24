@@ -26,4 +26,6 @@ else :
 
 group = DefineGroup('Persimmon', src, depend = ['PKG_USING_PERSIMMON'], LIBS = LIBS, LIBPATH = LIBPATH, CPPPATH = CPPPATH)
 
+group = group + SConscript('examples/SConscript')
+
 Return('group')

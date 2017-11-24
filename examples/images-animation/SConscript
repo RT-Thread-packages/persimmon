@@ -1,0 +1,10 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = Glob('*.c') + Glob('*.cpp')
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('ImagesAnimation', src, depend = ['RT_USING_PERSIMMON_EXAMPLE', 'PKG_USING_PERSIMMON'], CPPPATH = CPPPATH)
+
+Return('group')
