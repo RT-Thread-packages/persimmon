@@ -27,7 +27,7 @@ public:
     DotIndicator(Image *norImg, Image *selImg, int num, int gap = 0);
     virtual ~DotIndicator();
 
-    void setDirection(enum type t = HORIZONTAL)     /* ????????,??? 0 */
+    void setDirection(enum type t = HORIZONTAL)
     {
         direction = t;
     }
@@ -40,12 +40,12 @@ public:
         dotIndicatorSelNum = num;
     }
 
-    int getSelectNum(void)                        /* ????????? */
+    int getSelectNum(void)
     {
         return dotIndicatorSelNum;
     }
 
-    void setDotIndicatorNum(int num)               /* ????????? */
+    void setDotIndicatorNum(int num)
     {
         dotIndicatorNum = num;
     }

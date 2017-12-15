@@ -59,7 +59,7 @@ protected:
 class TapContainer: public Container
 {
 public:
-    TapContainer(const Rect &rect, int value);
+    TapContainer(const Rect &rect, int value = 0);
     virtual ~TapContainer() {}
 
     Signal<int> touch;

@@ -14,7 +14,7 @@
 
 using namespace Persimmon;
 
-#define PREFIX    "/"
+#define PREFIX      "/"
 
 Image* getImage(const char* fmt, ...);
 struct rtgui_dc *getImageDc(const char* fmt, ...);

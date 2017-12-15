@@ -28,6 +28,7 @@ public:
     Point(int xpos, int ypos);
 
     void move(int x, int y);
+    void moveTo(int x, int y);
 
     inline bool isNull() const
     {
@@ -145,10 +146,10 @@ public:
     Size getSize() const;
     void setSize(const Size& size);
 
-    void move(int x, int y);
-    void move(const Point &point);
-    void moveto(int deltaX, int deltaY);
-    void moveto(const Point &deltaPoint);
+    void moveTo(int x, int y);
+    void moveTo(const Point &point);
+    void move(int deltaX, int deltaY);
+    void move(const Point &deltaPoint);
 
     int left() const;
     int top() const;
@@ -194,7 +195,7 @@ inline const Rect operator+(const Rect& rect,
 {
     Rect rt(rect);
 
-    rt.moveto(pt);
+    rt.move(pt);
     return rt;
 }
 
@@ -203,7 +204,7 @@ inline const Rect operator-(const Rect& rect,
 {
     Rect rt(rect);
 
-    rt.moveto(-pt.x(), -pt.y());
+    rt.move(-pt.x(), -pt.y());
     return rt;
 }
 

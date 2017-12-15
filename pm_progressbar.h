@@ -91,7 +91,7 @@ public:
 
     Signal<int> clicked;
 
-    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);	//触摸手势事件处理函数
+    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);    //瑙︽懜鎵嬪娍浜嬩欢澶勭悊鍑芥暟
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
                         const Rect &srcRect = Rect(),
                         RenderFlag flags = DrawNormal);

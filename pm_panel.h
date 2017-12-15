@@ -32,6 +32,8 @@ public:
 
     void setScrollbar(Image *yImg, Image *xImg);
     void addItem(Widget *w);
+    void fixChildrenExtent(int xOffset, int yOffset);
+
     virtual bool handleGestureEvent(struct rtgui_event_gesture *gev,
                                     const struct rtgui_gesture *gest);
 
@@ -40,8 +42,6 @@ public:
                         RenderFlag flags = DrawNormal);
 
 protected:
-    void fixChildrenExtent(int xOffset, int yOffset);
-
     enum type mtype;
 
 private:
