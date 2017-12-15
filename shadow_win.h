@@ -18,7 +18,7 @@ namespace Persimmon
 class ShadowWin : public Window
 {
 public:
-    ShadowWin(const Rect &rect);
+    ShadowWin(const Rect &rect, const char *title = "ShadowWin");
     virtual ~ShadowWin();
 
     virtual void addChild(Widget* widget);

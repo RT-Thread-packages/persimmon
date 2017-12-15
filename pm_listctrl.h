@@ -83,7 +83,7 @@ protected:
 
     int getItemIndexAt(int x, int y);
 
-    int firstPosition;   //第一个子控件的起始位置
+    int firstPosition;
     int beginItemIndex;
     int currentItemIndex;
     int itemSize;

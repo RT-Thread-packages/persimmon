@@ -73,20 +73,17 @@ public:
                      const Point &start_pt,
                      const Point &stop_pt);
 
-    void enableFade(bool fade = true)
+    void enableFade(bool in, int min = 0, int max = 255)
     {
-        is_fade = fade;
-    }
-
-    void enableFadeOut(bool fadeOut = true)
-    {
-        is_fade_out = fadeOut;
-    }
-
-    void setFadeA(int min, int max)
-    {
+        is_fade_in = in;
         a_min = min;
         a_max = max;
+        is_fade = true;
+    }
+
+    void disableFade(void)
+    {
+        is_fade = false;
     }
 
     virtual ~AnimMoveAnimator();
@@ -94,87 +91,8 @@ public:
 
 protected:
     Point start_pt, stop_pt;
-    bool is_fade, is_fade_out;
+    bool is_fade, is_fade_in;
     int a_min, a_max;
-};
-
-class AnimSlideAnimator : public AnimAbstractAnimator
-{
-    typedef AnimAbstractAnimator super;
-
-public:
-    AnimSlideAnimator(struct rtgui_dc *buffer,
-                      const Rect &rect,
-                      const Point &start_pt,
-                      const Point &stop_pt);
-    AnimSlideAnimator(Widget &wgt,
-                      const Rect &rect,
-                      const Point &start_pt,
-                      const Point &stop_pt);
-
-    virtual ~AnimSlideAnimator();
-    virtual void act(struct rtgui_dc *dest_dc, int progress);
-    void setColor(rtgui_color_t left, rtgui_color_t right)
-    {
-        colorLeft = left;
-        colorRight = right;
-    }
-
-protected:
-    Rect animRect;
-    Point start_pt, stop_pt;
-    rtgui_color_t colorLeft, colorRight;
-};
-
-class AnimScaleAnimator: public AnimAbstractAnimator
-{
-    typedef AnimAbstractAnimator super;
-
-public:
-    AnimScaleAnimator(struct rtgui_dc *buffer, bool zoomin);
-    AnimScaleAnimator(Widget &wgt, bool zoomin);
-
-    virtual ~AnimScaleAnimator();
-    virtual void act(struct rtgui_dc *dest_dc, int progress);
-
-protected:
-    bool is_zoomin;
-};
-
-class AnimImageItem
-{
-public:
-    AnimImageItem(const char *img_path, int value);
-    virtual ~AnimImageItem() {}
-
-    int getItemNum(void)
-    {
-        return item_num;
-    }
-    Image* getImage(void)
-    {
-        return image;
-    }
-
-private:
-    Image* image;
-    int item_num;
-};
-
-class AnimShowPictureAnimator : public AnimAbstractAnimator
-{
-    typedef AnimAbstractAnimator super;
-
-public:
-    AnimShowPictureAnimator(struct rtgui_dc *buffer, const char *img_path, const char *img_type, int p_num);
-    AnimShowPictureAnimator(Widget &wgt, const char *img_path, const char *img_type, int p_num);
-
-    virtual ~AnimShowPictureAnimator();
-    virtual void act(struct rtgui_dc *dest_dc, int progress);
-
-protected:
-    int picture_num, progress_num;
-    std::vector<AnimImageItem *> items;
 };
 
 class AnimAbstractInterpolator
@@ -255,6 +173,7 @@ public:
 
     void start(bool is_modal=true);
     void stop();
+    void exit();
 
 private:
     Widget *m_owner;

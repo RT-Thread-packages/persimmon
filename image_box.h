@@ -18,20 +18,11 @@ namespace Persimmon
 class ImageBox : public Widget
 {
 public:
-    ImageBox(Image *image, const char *title = NULL);
+    ImageBox(Image *image);
     virtual ~ImageBox();
 
     void setImage(Image *m);
-    void setTitle(char *title);
-
-    Image* getImage(void)
-    {
-        return image;
-    }
-    const char* getTitle(void)
-    {
-        return title;
-    }
+    Image* getImage(void);
 
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
                         const Rect &srcRect = Rect(),
@@ -39,7 +30,6 @@ public:
 
 protected:
     Image *image;
-    const char *title;
 };
 
 }

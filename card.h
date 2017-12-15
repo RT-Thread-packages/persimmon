@@ -50,7 +50,25 @@ public:
         this->dot_sel = dot_sel;
     }
 
-    void selectCardPage(int index);
+    void nextCardPage(void)
+    {
+        changeCardPage(currentIndex + 1);
+    }
+
+    void prevCardPage(void)
+    {
+        changeCardPage(currentIndex - 1);
+    }
+
+    void selectCardPage(int index)
+    {
+        /* set currentIndex */
+        if (index < 0 || index >= children.size())
+            return;
+        children[currentIndex]->hide();
+        currentIndex = index;
+        children[currentIndex]->show();
+    }
 
     int getCurrentCardPage()
     {
@@ -78,18 +96,19 @@ public:
     virtual Widget* getMouseOwner(int x, int y);
 
     Signal<int> changed;
-    Signal<void> moveing;
+    Signal<void> moving;
 
 protected:
     enum type mtype;
 
     int currentIndex, old_pitch;
     struct rtgui_dc *mvdc;
-    bool old_mvnext, is_in_animation, is_moveing, is_boundary;
+    bool old_mvnext, is_moveing, is_boundary;
 
     Image *dot_nor, *dot_sel;
 
 private:
+    void changeCardPage(int index);
     void moveCard(struct rtgui_event_gesture* event, const struct rtgui_gesture *gesture);
     struct rtgui_dc* getAnimationDC(bool left);
     struct rtgui_dc* getAnimationDC(int first, int last);

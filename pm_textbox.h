@@ -29,8 +29,7 @@ public:
     char* getText(void);
     void clearText(void)
     {
-        if (text != RT_NULL) rt_free(text);
-
+        rt_free(text);
         text = RT_NULL;
         textLen = 0;
     }

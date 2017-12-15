@@ -60,7 +60,7 @@ public:
         return item[value];
     }
 
-    void setAdjustSpeed(int value)    //è°ƒæ•´æ»‘åŠ¨æ‰‹åŠ¿ç»“æŸåï¼Œæ§ä»¶ç»§ç»­æ»‘åŠ¨çš„é€Ÿåº¦ï¼Œå³è·ç¦»
+    void setAdjustSpeed(int value)  //µ÷Õû»¬¶¯ÊÖÊÆ½áÊøºó£¬¿Ø¼ş¼ÌĞø»¬¶¯µÄËÙ¶È£¬¼´¾àÀë
     {
         if (value >= 0)
             adjustSpeed = value;
@@ -85,22 +85,22 @@ protected:
     std::vector<Widget*> item;
     std::vector<int> item_num;
     int norExtentSize;
-    enum type mtype;                //æ»‘åŠ¨ç±»å‹ æ°´å¹³æˆ–å‚ç›´
+    enum type mtype;                    //»¬¶¯ÀàĞÍ Ë®Æ½»ò´¹Ö±
 
 private:
     void moveItem(bool ref);
-    void filterSelItem(void);       //ç­›é€‰å‡ºå½“å‰é€‰ä¸­é¡¹
+    void filterSelItem(void);           //É¸Ñ¡³öµ±Ç°Ñ¡ÖĞÏî
 
-    void animationStart(void);      //å¼€å§‹åŠ¨ç”»
-    void onAnimation(void);         //åŠ¨ç”»åˆ·æ–°
+    void animationStart(void);          //¿ªÊ¼¶¯»­
+    void onAnimation(void);             //¶¯»­Ë¢ĞÂ
 
     int selItemNum, oldSelItemNum, selExtentSize;
     int itemMovePitch, oldPitch, adjustSpeed;
 
-    Timer *animationTimer;         //åŠ¨ç”»æ•ˆæœä½¿ç”¨çš„å®šæ—¶å™¨
-    bool animationMoving, animEnable, tapEnable;  //true åˆ™ä¸ºåŠ¨ç”»è¿›è¡Œæ—¶  false åˆ™å¦
-    int animationMovePitch, _progress;      //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»éœ€ç§»åŠ¨çš„æ€»è·ç¦»
-    int animationPitch, animationProgress;  //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»ä¸­å½“å‰ç§»åŠ¨çš„è·ç¦»ï¼Œä»¥åŠ animationProgress åŠ¨ç”»è¿›åº¦
+    Timer *animationTimer;      //¶¯»­Ğ§¹ûÊ¹ÓÃµÄ¶¨Ê±Æ÷
+    bool animationMoving, animEnable, tapEnable;        //true ÔòÎª¶¯»­½øĞĞÊ±  false Ôò·ñ
+    int animationMovePitch, _progress;      //·Ö±ğÎªÎ´Ñ¡ÖĞÏîºÍÑ¡ÖĞÏî¶¯»­ĞèÒÆ¶¯µÄ×Ü¾àÀë
+    int animationPitch, animationProgress;  //·Ö±ğÎªÎ´Ñ¡ÖĞÏîºÍÑ¡ÖĞÏî¶¯»­ÖĞµ±Ç°ÒÆ¶¯µÄ¾àÀë£¬ÒÔ¼° animationProgress ¶¯»­½ø¶È
 };
 
 }
