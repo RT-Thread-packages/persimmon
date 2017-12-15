@@ -1,12 +1,8 @@
 /*
- * File      : pm_dotIndicator.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
+* File      : pm_dotIndicator.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2016 RT-Thread Develop Team
+*/
 #pragma once
 
 #include <pm_widget.h>
@@ -20,19 +16,19 @@ class DotIndicator : public Widget
 public:
     enum type
     {
-        HORIZONTAL  = 0,
-        VERTICAL    = 1,
+        HORIZONTAL	= 0,
+        VERTICAL	= 1,
     };
 
     DotIndicator(Image *norImg, Image *selImg, int num, int gap = 0);
     virtual ~DotIndicator();
 
-    void setDirection(enum type t = HORIZONTAL)     /* ????????,??? 0 */
+    void setDirection(enum type t = HORIZONTAL)
     {
         direction = t;
     }
 
-    void selectDotIndicator(int num)
+    void selectDotIndicator(int num)    /* 选中对应编号的点，起始值 0 */
     {
         if (num >= dotIndicatorNum || num < 0)
             return;
@@ -40,12 +36,12 @@ public:
         dotIndicatorSelNum = num;
     }
 
-    int getSelectNum(void)                        /* ????????? */
+    int getSelectNum(void)  /* 获取当前选中点编号 */
     {
         return dotIndicatorSelNum;
     }
 
-    void setDotIndicatorNum(int num)               /* ????????? */
+    void setDotIndicatorNum(int num)   /* 设置总共有多少个点 */
     {
         dotIndicatorNum = num;
     }

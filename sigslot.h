@@ -1,14 +1,5 @@
-/*
- * File      : sigslot.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-
-#pragma once
+#ifndef PM_SIGSLOT_H__
+#define PM_SIGSLOT_H__
 
 namespace Persimmon
 {
@@ -284,3 +275,4 @@ private:
 
 }
 
+#endif

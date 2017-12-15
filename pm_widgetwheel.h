@@ -1,13 +1,10 @@
 /*
- * File      : pm_widgetwheel.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+* File      : pm_widgetwheel.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2016 RT-Thread Develop Team
+*/
+#ifndef PM_WIDGETWHEEL_H__
+#define PM_WIDGETWHEEL_H__
 
 #include <vector>
 
@@ -23,17 +20,17 @@ class WidgetWheel : public Container
 public:
     enum type
     {
-        HORIZONTAL  = 1 << 0,
-        VERTICAL    = 1 << 1,
-        CYCLE       = 1 << 2,
+		HORIZONTAL	= 1 << 0,
+        VERTICAL	= 1 << 1,
+        CYCLE		= 1 << 2,
     };
-    DEFINE_CLASS_ENUM_FLAG_OPERATORS(type);
+	DEFINE_CLASS_ENUM_FLAG_OPERATORS(type);
 
     WidgetWheel(const Rect& rect, int norSize, int selSize);
     virtual ~WidgetWheel();
 
     void addItem(Widget* widget);
-    void emptyItem(void);
+	void emptyItem(void);
 
     void setSlideType(enum type tp = HORIZONTAL)
     {
@@ -60,7 +57,7 @@ public:
         return item[value];
     }
 
-    void setAdjustSpeed(int value)    //è°ƒæ•´æ»‘åŠ¨æ‰‹åŠ¿ç»“æŸåï¼Œæ§ä»¶ç»§ç»­æ»‘åŠ¨çš„é€Ÿåº¦ï¼Œå³è·ç¦»
+    void setAdjustSpeed(int value)	//µ÷Õû»¬¶¯ÊÖÊÆ½áÊøºó£¬¿Ø¼ş¼ÌĞø»¬¶¯µÄËÙ¶È£¬¼´¾àÀë
     {
         if (value >= 0)
             adjustSpeed = value;
@@ -76,7 +73,7 @@ public:
         tapEnable = enable;
     }
 
-    Signal<int> clicked;
+	Signal<int> clicked;
 
     virtual void act(int itemNum, int progress);
     virtual bool handleGestureEvent(struct rtgui_event_gesture *gev, const struct rtgui_gesture *gest);
@@ -85,23 +82,24 @@ protected:
     std::vector<Widget*> item;
     std::vector<int> item_num;
     int norExtentSize;
-    enum type mtype;                //æ»‘åŠ¨ç±»å‹ æ°´å¹³æˆ–å‚ç›´
+    enum type mtype;			       	//»¬¶¯ÀàĞÍ Ë®Æ½»ò´¹Ö±
 
 private:
     void moveItem(bool ref);
-    void filterSelItem(void);       //ç­›é€‰å‡ºå½“å‰é€‰ä¸­é¡¹
+    void filterSelItem(void);		    //É¸Ñ¡³öµ±Ç°Ñ¡ÖĞÏî
 
-    void animationStart(void);      //å¼€å§‹åŠ¨ç”»
-    void onAnimation(void);         //åŠ¨ç”»åˆ·æ–°
+    void animationStart(void);		   	//¿ªÊ¼¶¯»­
+    void onAnimation(void);			    //¶¯»­Ë¢ĞÂ
 
     int selItemNum, oldSelItemNum, selExtentSize;
     int itemMovePitch, oldPitch, adjustSpeed;
 
-    Timer *animationTimer;         //åŠ¨ç”»æ•ˆæœä½¿ç”¨çš„å®šæ—¶å™¨
-    bool animationMoving, animEnable, tapEnable;  //true åˆ™ä¸ºåŠ¨ç”»è¿›è¡Œæ—¶  false åˆ™å¦
-    int animationMovePitch, _progress;      //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»éœ€ç§»åŠ¨çš„æ€»è·ç¦»
-    int animationPitch, animationProgress;  //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»ä¸­å½“å‰ç§»åŠ¨çš„è·ç¦»ï¼Œä»¥åŠ animationProgress åŠ¨ç”»è¿›åº¦
+    Timer *animationTimer;		//¶¯»­Ğ§¹ûÊ¹ÓÃµÄ¶¨Ê±Æ÷
+    bool animationMoving, animEnable, tapEnable;		//true ÔòÎª¶¯»­½øĞĞÊ±  false Ôò·ñ
+    int animationMovePitch, _progress;	   	//·Ö±ğÎªÎ´Ñ¡ÖĞÏîºÍÑ¡ÖĞÏî¶¯»­ĞèÒÆ¶¯µÄ×Ü¾àÀë
+    int animationPitch, animationProgress;	//·Ö±ğÎªÎ´Ñ¡ÖĞÏîºÍÑ¡ÖĞÏî¶¯»­ÖĞµ±Ç°ÒÆ¶¯µÄ¾àÀë£¬ÒÔ¼° animationProgress ¶¯»­½ø¶È
 };
 
 }
+#endif
 

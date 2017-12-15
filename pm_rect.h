@@ -1,13 +1,11 @@
 /*
- * File      : pm_rect.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
+* File      : pm_rect.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2017 RT-Thread Develop Team
+*/
 
-#pragma once
+#ifndef PM_RECT_H__
+#define PM_RECT_H__
 
 #include <rtgui/rtgui.h>
 #include <rtgui/region.h>
@@ -28,6 +26,7 @@ public:
     Point(int xpos, int ypos);
 
     void move(int x, int y);
+	void moveTo(int x, int y);
 
     inline bool isNull() const
     {
@@ -145,10 +144,10 @@ public:
     Size getSize() const;
     void setSize(const Size& size);
 
-    void move(int x, int y);
-    void move(const Point &point);
-    void moveto(int deltaX, int deltaY);
-    void moveto(const Point &deltaPoint);
+    void moveTo(int x, int y);
+    void moveTo(const Point &point);
+    void move(int deltaX, int deltaY);
+    void move(const Point &deltaPoint);
 
     int left() const;
     int top() const;
@@ -194,7 +193,7 @@ inline const Rect operator+(const Rect& rect,
 {
     Rect rt(rect);
 
-    rt.moveto(pt);
+    rt.move(pt);
     return rt;
 }
 
@@ -203,7 +202,7 @@ inline const Rect operator-(const Rect& rect,
 {
     Rect rt(rect);
 
-    rt.moveto(-pt.x(), -pt.y());
+    rt.move(-pt.x(), -pt.y());
     return rt;
 }
 
@@ -228,4 +227,6 @@ inline int Rect::bottom() const
 }
 
 }
+
+#endif
 

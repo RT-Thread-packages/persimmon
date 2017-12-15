@@ -20,6 +20,14 @@ elif GetDepend('SOC_LPC54608'):
         LIBS = ['Persimmon_rvds']
     else :
         LIBS = []
+elif GetDepend('SOC_IMXRT1052'):
+    LIBPATH = [cwd + '/arm/imxrt1052']
+    if rtconfig.CROSS_TOOL == 'gcc':
+        LIBS = ['Persimmon_gcc']
+    elif rtconfig.CROSS_TOOL == 'keil':
+        LIBS = ['Persimmon_rvds']
+    else :
+        LIBS = []
 else :
     LIBPATH = []
     LIBS = []

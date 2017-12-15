@@ -1,13 +1,5 @@
-/*
- * File      : pm_panel.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+#ifndef PM_PANEL_H__
+#define PM_PANEL_H__
 
 #include <pm_container.h>
 #include <pm_image.h>
@@ -32,6 +24,8 @@ public:
 
     void setScrollbar(Image *yImg, Image *xImg);
     void addItem(Widget *w);
+	void fixChildrenExtent(int xOffset, int yOffset);
+
     virtual bool handleGestureEvent(struct rtgui_event_gesture *gev,
                                     const struct rtgui_gesture *gest);
 
@@ -40,8 +34,6 @@ public:
                         RenderFlag flags = DrawNormal);
 
 protected:
-    void fixChildrenExtent(int xOffset, int yOffset);
-
     enum type mtype;
 
 private:
@@ -53,4 +45,6 @@ private:
 };
 
 }
+
+#endif
 
