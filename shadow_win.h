@@ -1,10 +1,5 @@
 /*
- * File      : shadow_win.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
+ * ShadowWindow
  */
 
 #pragma once
@@ -18,7 +13,7 @@ namespace Persimmon
 class ShadowWin : public Window
 {
 public:
-    ShadowWin(const Rect &rect);
+    ShadowWin(const Rect &rect, const char *title = "ShadowWin");
     virtual ~ShadowWin();
 
     virtual void addChild(Widget* widget);

@@ -1,12 +1,8 @@
 /*
- * File      : image_box.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
- 
+* File      : image_box.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2017 RT-Thread Develop Team
+*/
 #pragma once
 
 #include <pm_widget.h>
@@ -18,20 +14,11 @@ namespace Persimmon
 class ImageBox : public Widget
 {
 public:
-    ImageBox(Image *image, const char *title = NULL);
+    ImageBox(Image *image);
     virtual ~ImageBox();
 
     void setImage(Image *m);
-    void setTitle(char *title);
-
-    Image* getImage(void)
-    {
-        return image;
-    }
-    const char* getTitle(void)
-    {
-        return title;
-    }
+	Image* getImage(void);
 
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
                         const Rect &srcRect = Rect(),
@@ -39,7 +26,6 @@ public:
 
 protected:
     Image *image;
-    const char *title;
 };
 
 }

@@ -1,13 +1,5 @@
-/*
- * File      : pm_widget.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+#ifndef PM_WIDIGET_H__
+#define PM_WIDIGET_H__
 
 #include <rtgui/rtgui.h>
 #include <rtgui/widgets/widget.h>
@@ -111,7 +103,11 @@ public:
         }
         else
         {
-            if (widget->flag | RTGUI_WIDGET_FLAG_TRANSPARENT)
+			if (backgroundDc)
+				rtgui_dc_destory(backgroundDc);
+			backgroundDc = RT_NULL;
+
+            if (widget->flag & RTGUI_WIDGET_FLAG_TRANSPARENT)
             {
                 widget->flag &= ~RTGUI_WIDGET_FLAG_TRANSPARENT;
                 rtgui_widget_clip_parent(widget);
@@ -127,14 +123,15 @@ public:
 
     Widget* setBackground(Image *image)
     {
-        if (backgroundDc) rtgui_dc_destory(backgroundDc);
-
+        if (backgroundDc)
+			rtgui_dc_destory(backgroundDc);
         backgroundDc = RT_NULL;
 
         if (image)
         {
             backgroundDc = rtgui_dc_buffer_create(image->getWidth(), image->getHeight());
-            rtgui_image_blit(image->getImage(), backgroundDc, RT_NULL);
+			if (backgroundDc)
+				rtgui_image_blit(image->getImage(), backgroundDc, RT_NULL);
 
             /* release this image */
             delete image;
@@ -143,15 +140,33 @@ public:
         return this;
     }
 
+	Widget* setTransparentBackground(Image *image)
+	{
+		if (backgroundDc)
+			rtgui_dc_destory(backgroundDc);
+		backgroundDc = RT_NULL;
+
+		if (image)
+		{
+			backgroundDc = rtgui_dc_buffer_create_pixformat(RTGRAPHIC_PIXEL_FORMAT_ARGB888, image->getWidth(), image->getHeight());
+			if (backgroundDc)
+				rtgui_image_blit(image->getImage(), backgroundDc, RT_NULL);
+
+			/* release this image */
+			delete image;
+		}
+
+		return this;
+	}
+
     Widget* setBackground(struct rtgui_dc* bg)
     {
-        if (backgroundDc) rtgui_dc_destory(backgroundDc);
+        if (backgroundDc)
+			rtgui_dc_destory(backgroundDc);
         backgroundDc = bg;
 
         return this;
     }
-
-    Widget* setTransparentBackground(Image *image);
 
     Widget* setForeground(rtgui_color_t color)
     {
@@ -187,11 +202,12 @@ public:
 
     bool isInAnimation(void)
     {
-        return (rtgui_widget_is_in_animation(getWidget()) == RT_TRUE)? true:false ;
+        return (rtgui_widget_is_in_animation(getWidget()) == RT_TRUE) ? true:false ;
     }
+
     bool isTransparent(void)
     {
-        return (widget->flag & RTGUI_WIDGET_FLAG_TRANSPARENT)? true:false;
+        return (widget->flag & RTGUI_WIDGET_FLAG_TRANSPARENT) ? true:false;
     }
 
     void refresh(bool update = true);
@@ -250,6 +266,14 @@ public:
         parent = w;
         rtgui_widget_set_parent(widget, w ? w->widget : NULL);
     }
+	
+    virtual void setGestureRect(const Rect &rect, bool enable = true)
+	{
+		gestureRect = rect;
+		enableGestureRect = enable;
+	}
+
+	void renderFloating(struct rtgui_dc *dc);
 
 protected:
     static void renderParentBackground(Widget* widget, Widget* parent, struct rtgui_dc* dc, const Point &dcPoint, const Rect &srcRect);
@@ -261,6 +285,9 @@ private:
     /* Set by Container::addChild. */
     Widget *parent;
 
+	bool enableGestureRect;
+	Rect gestureRect;
+
     friend class Window;
     enum rtgui_gesture_type gest_tp;
 };
@@ -269,3 +296,4 @@ private:
 
 DEFINE_CLASS_ENUM_FLAG_OPERATORS2(rtgui_gesture_type);
 
+#endif

@@ -1,13 +1,5 @@
-/*
- * File      : pm_switch.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+#ifndef PM_SWITCH_H__
+#define PM_SWITCH_H__
 
 #include <pm_image.h>
 #include <pm_widget.h>
@@ -47,4 +39,6 @@ private:
 };
 
 }
+
+#endif
 

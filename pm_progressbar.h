@@ -1,12 +1,8 @@
 /*
- * File      : pm_progressbar.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
+* File      : pm_progressbar.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2016 RT-Thread Develop Team
+*/
 #pragma once
 
 #include <pm_widget.h>
@@ -21,8 +17,8 @@ class ProgressBar : public Widget
 public:
     enum type
     {
-        HORIZONTAL  = 0,
-        VERTICAL    = 1,
+        HORIZONTAL	= 0,
+        VERTICAL	= 1,
     };
 
     ProgressBar(Image *norImg, Image *barImg, Image *sliderImg);
@@ -41,12 +37,12 @@ public:
 
     void setCurrentValue(int value)
     {
-        if (value > maxValue)
-            currentValue = maxValue;
-        else if (value < minValue)
-            currentValue = minValue;
-        else
-            currentValue = value;
+		if (value > maxValue)
+			currentValue = maxValue;
+		else if (value < minValue)
+			currentValue = minValue;
+		else
+			currentValue = value;
     }
 
     int getCurrentValue(void)
@@ -83,15 +79,15 @@ public:
 
     void enableGesture(bool ges = true)
     {
-        if (ges)
-            setInterestGesture(RTGUI_GESTURE_DRAG | RTGUI_GESTURE_TAP);
-        else
-            setInterestGesture(RTGUI_GESTURE_NONE);
+		if (ges)
+			setInterestGesture(RTGUI_GESTURE_DRAG | RTGUI_GESTURE_TAP);
+		else
+			setInterestGesture(RTGUI_GESTURE_NONE);
     }
 
     Signal<int> clicked;
 
-    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);	//触摸手势事件处理函数
+    virtual bool handleGestureEvent(struct rtgui_event_gesture *, const struct rtgui_gesture *);	//瑙︽懜鎵嬪娍浜嬩欢澶勭悊鍑芥暟
     virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
                         const Rect &srcRect = Rect(),
                         RenderFlag flags = DrawNormal);

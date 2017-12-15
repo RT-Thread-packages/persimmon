@@ -1,13 +1,5 @@
-/*
- * File      : pm_listctrl.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+#ifndef PM_LISTCTRL_H__
+#define PM_LISTCTRL_H__
 
 #include <vector>
 #include <pm_widget.h>
@@ -83,7 +75,7 @@ protected:
 
     int getItemIndexAt(int x, int y);
 
-    int firstPosition;   //第一个子控件的起始位置
+    int firstPosition;	//第一个子控件的起始位置
     int beginItemIndex;
     int currentItemIndex;
     int itemSize;
@@ -113,4 +105,5 @@ private:
 };
 
 }
+#endif
 

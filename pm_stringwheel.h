@@ -1,13 +1,10 @@
 /*
- * File      : pm_stringwheel.h
- * COPYRIGHT (C) 2012-2017, Shanghai Real-Thread Technology Co., Ltd
- *
- * Change Logs:
- * Date           Author       Notes
- * 2017-11-05     realthread   the first version
- */
-
-#pragma once
+* File      : pm_stringwheel.h
+* This file is part of RT-Thread RTOS
+* COPYRIGHT (C) 2009-2016 RT-Thread Develop Team
+*/
+#ifndef PM_STRWHEEL_H__
+#define PM_STRWHEEL_H__
 
 #include <vector>
 #include <pm_widget.h>
@@ -33,7 +30,22 @@ public:
 
     Signal<int> clicked;
 
-    void addStr(const char *text,const Rect& rect);
+	void updateStrSize(void)
+	{
+		if (mtype & HORIZONTAL)
+		{
+			strWidth = norExtentSize;
+			strHeight = getRect().getHeight();
+		}
+		else
+		{
+			strWidth = getRect().getHeight();
+			strHeight = norExtentSize;
+		}
+	}
+
+    void addStr(const char *text);
+	void addStr(char *fmt, ...);
     void emptyStringWheel(void)
     {
         int size = str.size();
@@ -101,7 +113,7 @@ public:
         return selItemNum;
     }
 
-    void setAdjustSpeed(int value)    //è°ƒæ•´æ»‘åŠ¨æ‰‹åŠ¿ç»“æŸåŽï¼ŒæŽ§ä»¶ç»§ç»­æ»‘åŠ¨çš„é€Ÿåº¦ï¼Œå³è·ç¦»
+    void setAdjustSpeed(int value)	//µ÷Õû»¬¶¯ÊÖÊÆ½áÊøºó£¬¿Ø¼þ¼ÌÐø»¬¶¯µÄËÙ¶È£¬¼´¾àÀë
     {
         if (value >= 0)
             adjustSpeed = value;
@@ -128,25 +140,119 @@ protected:
     std::vector<Rect> extent;
     std::vector<int> number;
     int norExtentSize, selExtentSize;
+	int strWidth, strHeight;
     int selItemNum, currentItemNum, selProgress;
 
 private:
     void moveItem(bool ref);
-    void filterSelItem(void);    //ç­›é€‰å‡ºå½“å‰é€‰ä¸­é¡¹
+    void filterSelItem(void);		    //É¸Ñ¡³öµ±Ç°Ñ¡ÖÐÏî
 
-    void animationStart(void);   //å¼€å§‹åŠ¨ç”»
-    void onAnimation(void);      //åŠ¨ç”»åˆ·æ–°
+    void animationStart(void);		   	//¿ªÊ¼¶¯»­
+    void onAnimation(void);			    //¶¯»­Ë¢ÐÂ
 
-    enum type mtype;             //æ»‘åŠ¨ç±»åž‹ æ°´å¹³æˆ–åž‚ç›´
+    enum type mtype;			       	//»¬¶¯ÀàÐÍ Ë®Æ½»ò´¹Ö±
     int cycleEnable;
 
     int itemMovePitch, oldPitch, adjustSpeed;
 
-    Timer *animationTimer;       //åŠ¨ç”»æ•ˆæžœä½¿ç”¨çš„å®šæ—¶å™¨
-    bool animationMoving, animEnable, tapEnable;    //true åˆ™ä¸ºåŠ¨ç”»è¿›è¡Œæ—¶  false åˆ™å¦
-    int animationMovePitch, _progress;     //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»éœ€ç§»åŠ¨çš„æ€»è·ç¦»
-    int animationPitch, animationProgress; //åˆ†åˆ«ä¸ºæœªé€‰ä¸­é¡¹å’Œé€‰ä¸­é¡¹åŠ¨ç”»ä¸­å½“å‰ç§»åŠ¨çš„è·ç¦»ï¼Œä»¥åŠ animationProgress åŠ¨ç”»è¿›åº¦
+    Timer *animationTimer;		//¶¯»­Ð§¹ûÊ¹ÓÃµÄ¶¨Ê±Æ÷
+    bool animationMoving, animEnable, tapEnable;		//true ÔòÎª¶¯»­½øÐÐÊ±  false Ôò·ñ
+    int animationMovePitch, _progress;	   	//·Ö±ðÎªÎ´Ñ¡ÖÐÏîºÍÑ¡ÖÐÏî¶¯»­ÐèÒÆ¶¯µÄ×Ü¾àÀë
+    int animationPitch, animationProgress;	//·Ö±ðÎªÎ´Ñ¡ÖÐÏîºÍÑ¡ÖÐÏî¶¯»­ÖÐµ±Ç°ÒÆ¶¯µÄ¾àÀë£¬ÒÔ¼° animationProgress ¶¯»­½ø¶È
 };
 
+
+
+//class StringWheelOne : public StringWheel
+//{
+//public:
+//    StringWheelOne(const Rect& rect, int norSize, int selSize, enum type tp = VERTICAL);
+//    virtual ~StringWheelOne();
+
+//    void setItemFontSizeBoundary(int max, int mini)
+//    {
+//        selItemFontSize = max;
+//        norItemFontSize = mini;
+//    }
+
+//    void setItemFontColor(rtgui_color_t selColor, rtgui_color_t norColor)
+//    {
+//        selItemFontColor = selColor;
+//        norItemFontColor = norColor;
+//        setForeground(norColor);
+//    }
+
+//    virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
+//                        const Rect &srcRect = Rect(),
+//                        RenderFlag flags = DrawNormal);
+
+//private:
+//    int norItemFontSize, selItemFontSize;
+//    rtgui_color_t norItemFontColor, selItemFontColor;
+//};
+
+
+
+//class StringWheelTwo : public StringWheel
+//{
+//public:
+//    StringWheelTwo(const Rect& rect, int norSize, int selSize, enum type tp = VERTICAL);
+//    virtual ~StringWheelTwo();
+
+//    void setItemFontSizeBoundary(int max, int mini)
+//    {
+//        selItemFontSize = max;
+//        norItemFontSize = mini;
+//    }
+
+//    void setImage(Image *img, Point point, const Rect& rect, rtgui_color_t fore, rtgui_color_t back)
+//    {
+//		if (_image)
+//			delete _image;
+
+//        _image = img;
+//        _point = point;
+//        selRect = rect;
+//        strRect = Rect(rect.left() + img->getWidth(), 0, rect.getWidth() - img->getWidth(), rect.getHeight());
+
+//        foreColor = fore;
+//        backColor = back;
+
+//        if (selDc)
+//        {
+//            rtgui_dc_destory(selDc);
+//            selDc = RT_NULL;
+//        }
+
+//        if (selDc == RT_NULL)
+//        {
+//            selDc = rtgui_dc_buffer_create_pixformat(RTGRAPHIC_PIXEL_FORMAT_RGB565, selRect.getWidth(), selRect.getHeight());
+//            if (selDc)
+//            {
+//                rtgui_gc_t *gc = rtgui_dc_get_gc(selDc);
+
+//                gc->background = backColor;
+//                gc->foreground = foreColor;
+//                gc->font = getFont();
+//                gc->textalign = RTGUI_ALIGN_LEFT | RTGUI_ALIGN_CENTER_VERTICAL;
+//            }
+//        }
+//    }
+
+//    virtual void render(struct rtgui_dc* dc, const Point &dcPoint = Point(),
+//                        const Rect &srcRect = Rect(),
+//                        RenderFlag flags = DrawNormal);
+
+//private:
+//    int norItemFontSize, selItemFontSize;
+
+//    Image *_image;			//Ñ¡ÖÐ¿ò×ó±ßµÄÍ¼Æ¬
+//    Point _point;			//Í¼Æ¬ÏÔÊ¾Ïà¶ÔÓÚÑ¡ÖÐ¿ò×ø±êÆðÊ¼µã
+//    Rect selRect, strRect;	//Ñ¡ÖÐ¿ò¡¢×Ö·û´®ÏÔÊ¾Ïà¶Ô×ø±ê¶ÔÓ¦¾ØÐÎ
+//    rtgui_color_t foreColor, backColor;		//Ñ¡ÖÐ¿òµÄÇ°¾°É«ºÍ±³¾°É«£¬±³¾°É«Óë¿Ø¼þ±³¾°É«Ò»ÖÂ
+//    struct rtgui_dc *selDc;		//Ñ¡ÖÐ¿ò dc
+//};
+
 }
+#endif
 
